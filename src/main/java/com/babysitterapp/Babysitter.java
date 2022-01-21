@@ -2,7 +2,11 @@ package com.babysitterapp;
 
 public class Babysitter {
 
-    // Bedtime is 9 PM
+    // Bedtime may vary, needed for user input
+    private final double bedtime;
+    public Babysitter(double bedtime) {
+        this.bedtime = bedtime;
+    }
 
     public int calculateRate(double startTime, double endTime) {
         int rate = 0;
@@ -11,7 +15,7 @@ public class Babysitter {
             endTime += 12;
         }
         // Add $12 to the rate for each hr worked before bedtime and end time
-        while (futureStartTime(startTime) <= 9 && futureStartTime(startTime) <= endTime) {
+        while (futureStartTime(startTime) <= this.bedtime && futureStartTime(startTime) <= endTime) {
             startTime++;
             rate += 12;
         }

@@ -4,7 +4,7 @@ import org.junit.*;
 
 public class BabysitterTest {
 
-    private final Babysitter babysitter = new Babysitter();
+    private Babysitter babysitter;
 
     @Test
     public void calculate_rate_for_full_days_work_5_to_4() {
@@ -16,6 +16,7 @@ public class BabysitterTest {
         // Arrange
         int expectedRate = 136;
         // Act
+        babysitter = new Babysitter(9);
         int actualRate = babysitter.calculateRate(5, 4);
         // Assert
         Assert.assertEquals(expectedRate, actualRate);
@@ -28,6 +29,7 @@ public class BabysitterTest {
         // Arrange
         int expectedRate = 48;
         // Act
+        babysitter = new Babysitter(9);
         int actualRate = babysitter.calculateRate(5, 9);
         // Assert
         Assert.assertEquals(expectedRate, actualRate);
@@ -43,6 +45,7 @@ public class BabysitterTest {
         // Arrange
         int expectedRate = 96;
         // Act
+        babysitter = new Babysitter(9);
         int actualRate = babysitter.calculateRate(6.25, 3);
         // Assert
         Assert.assertEquals(expectedRate, actualRate);
