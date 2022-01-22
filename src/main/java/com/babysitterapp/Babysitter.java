@@ -4,44 +4,54 @@ public class Babysitter {
 
     // Bedtime may vary, needed for user input
     private double bedtime;
+
+    // Variables to make magic numbers easier to read
+    private final int ZERO = 0;
+    private final int ONE = 1;
+    private final int FIVE = 5;
+    private final int TWELVE = 12;
+    private final int MIDNIGHT = 12;
+    private final int SIXTEEN = 16;
+    private final int EIGHT = 8;
+
     public Babysitter(double bedtime) {
         this.bedtime = bedtime;
     }
 
     public int calculateRate(double startTime, double endTime) {
-        int rate = 0;
+        int rate = ZERO;
         // Taking into account the 24 hr clock
-        if (endTime < 5) {
-            endTime += 12;
+        if (endTime < FIVE) {
+            endTime += TWELVE;
         }
         if (getBedtime() < 5) {
-            setBedtime(this.bedtime += 12);
+            setBedtime(this.bedtime += TWELVE);
         }
         // Add $12 to the rate for each hr worked before bedtime and end time
-        while (futureStartTime(startTime) <= getBedtime() && futureStartTime(startTime) <= endTime) {
+        while (startTimePlusOneHr(startTime) <= getBedtime() && startTimePlusOneHr(startTime) <= endTime) {
             startTime++;
-            rate += 12;
-            if (futureStartTime(startTime) > 12) {
+            rate += TWELVE;
+            if (startTimePlusOneHr(startTime) > MIDNIGHT) {
                 break;
             }
         }
         // Add $8 to the rate for each hr worked before midnight and end time
-        while (futureStartTime(startTime) <= 12 && futureStartTime(startTime) <= endTime) {
+        while (startTimePlusOneHr(startTime) <= MIDNIGHT && startTimePlusOneHr(startTime) <= endTime) {
             startTime++;
-            rate += 8;
+            rate += EIGHT;
         }
         // Add $16 to the rate for each hr worked after midnight and end time
-        while (futureStartTime(startTime) <= 16 && futureStartTime(startTime) <= endTime) {
+        while (startTimePlusOneHr(startTime) <= SIXTEEN && startTimePlusOneHr(startTime) <= endTime) {
             startTime++;
-            rate += 16;
+            rate += SIXTEEN;
         }
         return rate;
     }
 
     // Method that returns the start time with an added hour
     // To compare if a whole hour has been worked
-    private double futureStartTime(double startTime) {
-        return startTime + 1;
+    private double startTimePlusOneHr(double startTime) {
+        return startTime + ONE;
     }
 
     public double getBedtime() {
