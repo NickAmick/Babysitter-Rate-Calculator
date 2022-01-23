@@ -31,7 +31,7 @@ public class Application {
 
             displayCalculatedRate(babysitter.calculateRate(startTime, endTime));
 
-            inUse = calculateAnotherRateOrQuit(startTime, bedtime, endTime);
+            inUse = calculateAnotherRateOrQuit();
 
             if (inUse) {
                 startTime = resetTime();
@@ -45,7 +45,9 @@ public class Application {
     private static void displayBanner() {
         System.out.println("--------------------------------------------------------");
         System.out.println();
-        System.out.println("    Welcome to the babysitter rate calculator app!");
+        System.out.println("    Welcome to the Babysitter Rate Calculator App!");
+        System.out.println("    Give us a start time, bedtime, and an end time.");
+        System.out.println("    And we will give you the rate you should charge!");
         System.out.println("    Please enter all times in hh:mm format");
         System.out.println();
         System.out.println("--------------------------------------------------------");
@@ -108,7 +110,7 @@ public class Application {
         System.out.println("----------------------------------------------");
     }
 
-    private static boolean calculateAnotherRateOrQuit(double startTime, double bedtime, double endTime) {
+    private static boolean calculateAnotherRateOrQuit() {
         System.out.println();
         System.out.println("Do you want to calculate another rate? (Y) or (N) ");
         String userChoiceToContinue = input.nextLine();
