@@ -79,6 +79,21 @@ public class BabysitterTest {
         babysitter = new Babysitter(11.5);
         int actualRate = babysitter.calculateRate(10, 12.5);
         // Assert
-        Assert.assertEquals("rate_for_7_bedtime_work_7_to_2_should_be_92", expectedRate, actualRate);
+        Assert.assertEquals("rate_for_1130_bedtime_work_10_to_1230_should_be_12", expectedRate, actualRate);
+    }
+
+    @Test
+    public void rate_for_1030_bedtime_work_10_to_11_should_be_0() {
+        // 10:00PM - bedtime 10:30 PM is 0 full hrs
+        // 10:30PM - 11:00PM is 0 full hrs
+        // Total is $0
+
+        // Arrange
+        int expectedRate = 0;
+        // Act
+        babysitter = new Babysitter(10.5);
+        int actualRate = babysitter.calculateRate(10, 11);
+        // Assert
+        Assert.assertEquals("rate_for_1030_bedtime_work_10_to_11_should_be_0", expectedRate, actualRate);
     }
 }
