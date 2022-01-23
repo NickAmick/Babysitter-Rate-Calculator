@@ -119,10 +119,10 @@ public class BabysitterTest {
         // Total is $36
 
         // Arrange
-        int expectedRate = 48;
+        int expectedRate = 24;
         // Act
         babysitter = new Babysitter(12);
-        int actualRate = babysitter.calculateRate(6.0 + (5.0/60.0), 11.0 + (4.0/60.0));
+        int actualRate = babysitter.calculateRate(7.0 + (5.0/60.0), 10.0 + (4.0/60.0));
         // Assert
         Assert.assertEquals("Rate for 12:00PM bedtime, work 7:05PM to 10:04PM, should be $24", expectedRate, actualRate);
     }
