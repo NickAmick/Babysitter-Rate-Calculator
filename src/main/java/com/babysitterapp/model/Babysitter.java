@@ -1,4 +1,4 @@
-package com.babysitterapp;
+package com.babysitterapp.model;
 
 public class Babysitter {
 

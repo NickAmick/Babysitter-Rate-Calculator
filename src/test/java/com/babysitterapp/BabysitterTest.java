@@ -1,5 +1,6 @@
 package com.babysitterapp;
 
+import com.babysitterapp.model.Babysitter;
 import org.junit.*;
 
 public class BabysitterTest {
