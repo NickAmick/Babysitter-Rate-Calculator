@@ -116,7 +116,7 @@ public class BabysitterTest {
     @Test
     public void rate_for_12_bedtime_work_705_to_1004_should_be_24() {
         // 7:05PM - end time 10:04PM is 2 full hrs at $12/hr equals $24
-        // Total is $36
+        // Total is $24
 
         // Arrange
         int expectedRate = 24;
