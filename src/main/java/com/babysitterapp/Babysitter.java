@@ -19,7 +19,9 @@ public class Babysitter {
     }
 
     public int calculateRate(double startTime, double endTime) {
+
         int rate = ZERO;
+
         // Taking into account the 24 hr clock
         if (endTime < FIVE) {
             endTime += TWELVE;
@@ -27,19 +29,39 @@ public class Babysitter {
         if (getBedtime() < FIVE) {
             setBedtime(this.bedtime += TWELVE);
         }
-        // Add $12 to the rate for each hr worked before bedtime and end time
+
+        // Add $12 to the rate for each hr worked after start time - before bedtime and end time
         while (startTimePlusOneHr(startTime) <= getBedtime() && startTimePlusOneHr(startTime) <= endTime) {
             startTime++;
             rate += TWELVE;
+
+            // Taking into account if the bedtime and end time is later than midnight
             if (startTimePlusOneHr(startTime) > MIDNIGHT) {
+                // Setting start time to 12 to account for non-full hours remaining
+                startTime = TWELVE;
                 break;
             }
         }
-        // Add $8 to the rate for each hr worked before midnight and end time
+
+        // Taking into account any non-full hours remaining once loop is broke
+        // By start time plus one being greater than bedtime and not by end time
+        // Setting start time equal to bedtime
+        if (startTime < endTime) {
+            startTime = getBedtime();
+        }
+
+        // Add $8 to the rate for each hr worked after bedtime - before midnight and end time
         while (startTimePlusOneHr(startTime) <= MIDNIGHT && startTimePlusOneHr(startTime) <= endTime) {
             startTime++;
             rate += EIGHT;
         }
+
+        // Taking into account any non-full hours remaining once loop is broke
+        // By start time plus one being greater than midnight, setting start time to midnight
+        if (startTime < endTime) {
+            startTime = MIDNIGHT;
+        }
+
         // Add $16 to the rate for each hr worked after midnight and end time
         while (startTimePlusOneHr(startTime) <= SIXTEEN && startTimePlusOneHr(startTime) <= endTime) {
             startTime++;
