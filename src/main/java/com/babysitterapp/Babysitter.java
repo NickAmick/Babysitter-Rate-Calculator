@@ -24,7 +24,7 @@ public class Babysitter {
         if (endTime < FIVE) {
             endTime += TWELVE;
         }
-        if (getBedtime() < 5) {
+        if (getBedtime() < FIVE) {
             setBedtime(this.bedtime += TWELVE);
         }
         // Add $12 to the rate for each hr worked before bedtime and end time
