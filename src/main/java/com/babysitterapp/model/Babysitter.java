@@ -18,11 +18,24 @@ public class Babysitter {
         this.bedtime = bedtime;
     }
 
+    /**
+     * Returns an Integer (rate) representing the nightly charge for a
+     * babysitter's given start time, the babies bedtime and the sitter's end time.
+     * <p>
+     * This method increments the rate by 12 for every full hour worked from start
+     * time to end time, 8 for every full hour worked from bedtime to midnight and
+     * 16 for every full hour worked from midnight to end of job.
+     *
+     * @param startTime double representing hour and minutes work began
+     * @param endTime double representing hour and minutes work ended
+     * @return Integer representing nightly charge in dollars
+     */
     public int calculateRate(double startTime, double endTime) {
 
         int rate = ZERO;
 
         // Taking into account the 24 hr clock
+        // When bedtime or end time is after midnight
         if (endTime < FIVE) {
             endTime += TWELVE;
         }
@@ -36,15 +49,16 @@ public class Babysitter {
             rate += TWELVE;
 
             // Taking into account if the bedtime and end time is later than midnight
+            // Breaking this pay loop for next pay rate
             if (startTimePlusOneHr(startTime) > MIDNIGHT) {
-                // Setting start time to 12 to account for non-full hours remaining
-                startTime = TWELVE;
+                // Setting start time to Midnight, accounting for non-full hours remaining
+                startTime = MIDNIGHT;
                 break;
             }
         }
 
         // Taking into account any non-full hours remaining once loop is broke
-        // By start time plus one being greater than bedtime and not by end time
+        // By start time plus one being greater than bedtime and not by end time or midnight
         // Setting start time equal to bedtime
         if (startTime < endTime) {
             startTime = getBedtime();
@@ -62,7 +76,7 @@ public class Babysitter {
             startTime = MIDNIGHT;
         }
 
-        // Add $16 to the rate for each hr worked after midnight and end time
+        // Add $16 to the rate for each hr worked after midnight and before end time
         while (startTimePlusOneHr(startTime) <= SIXTEEN && startTimePlusOneHr(startTime) <= endTime) {
             startTime++;
             rate += SIXTEEN;
