@@ -19,16 +19,16 @@ public class Babysitter {
     }
 
     /**
-     * Returns an Integer (rate) representing the nightly charge for a
-     * babysitter's given start time, the babies bedtime and the sitter's end time.
+     * Returns an Integer (rate) representing the nightly charge in dollars for a
+     * babysitter's given start time and the sitter's end time.
      * <p>
-     * This method increments the rate by 12 for every full hour worked from start
-     * time to end time, 8 for every full hour worked from bedtime to midnight and
-     * 16 for every full hour worked from midnight to end of job.
+     * This method increments the rate by $12 for every full hour worked from start
+     * time to bedtime, $8 for every full hour worked from bedtime to midnight and
+     * $16 for every full hour worked from midnight to end of job.
      *
-     * @param startTime double representing hour and minutes work began
-     * @param endTime double representing hour and minutes work ended
-     * @return Integer representing nightly charge in dollars
+     * @param startTime Double representing the hour and minutes when work began
+     * @param endTime Double representing the hour and minutes when work ended
+     * @return Integer representing the nightly charge in dollars
      */
     public int calculateRate(double startTime, double endTime) {
 
